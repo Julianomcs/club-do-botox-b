@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clube do Botox — Odontologia Ribeiro</title>
+  <meta name="description" content="Modelo de rejuvenescimento contínuo para mulheres que querem manter uma aparência bem cuidada, natural e equilibrada ao longo do ano inteiro." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#FAFAFA',
+            brand: '#4A3728',
+            cta: '#25D366',
+            ink: '#1A1A1A',
+          },
+          fontFamily: {
+            serif: ["'Playfair Display'", 'Georgia', 'serif'],
+            sans: ["'Inter'", 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #FAFAFA; color: #1A1A1A; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* ─── Split-Text: FEMININO ─── */
+    .split-word { display: inline-flex; overflow: hidden; }
+    .split-left {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(-70px);
+      animation: slideInLeft 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+    .split-right {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(70px);
+      animation: slideInRight 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+    @keyframes slideInLeft {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ─── Hero Fade-in ─── */
+    .hero-sub, .hero-cta-wrap {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+    }
+    .hero-cta-wrap { animation-delay: 1.1s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SVG Gooey Filter ─── */
+    .goo-filter { position: absolute; width: 0; height: 0; }
+
+    /* ─── Blob Button — Base (fundo claro → marrom) ─── */
+    .blob-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.4rem;
+      border: 2px solid #4A3728;
+      border-radius: 9999px;
+      background: transparent;
+      color: #4A3728;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+      text-decoration: none;
+      transition: color 0.45s ease;
+    }
+    .blob-btn:hover { color: #FAFAFA; }
+
+    .blob-btn__inner {
+      position: absolute;
+      inset: -2px;
+      border-radius: 9999px;
+      overflow: hidden;
+      filter: url(#goo);
+      z-index: -1;
+    }
+    .blob-btn__blobs {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+    .blob-btn__blob {
+      position: absolute;
+      /* Larger blobs + negative offsets ensure pill edges are fully covered */
+      width: 42%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #4A3728;
+      transform: translate3d(0, 160%, 0) scale(1.8);
+      transition: transform 0.48s ease;
+    }
+    .blob-btn:hover .blob-btn__blob { transform: translate3d(0, 0%, 0) scale(1.8); }
+    .blob-btn__blob:nth-child(1) { left: -12%; transition-delay: 0s; }
+    .blob-btn__blob:nth-child(2) { left: 22%;  transition-delay: 0.08s; }
+    .blob-btn__blob:nth-child(3) { left: 55%;  transition-delay: 0.16s; }
+    .blob-btn__blob:nth-child(4) { left: 82%;  transition-delay: 0.24s; }
+
+    /* Blob Button — alias brand (mesma coisa, mantido para retrocompatibilidade) */
+    .blob-btn--brand {
+      border-color: #4A3728;
+      color: #4A3728;
+    }
+    .blob-btn--brand:hover { color: #FAFAFA; }
+    .blob-btn--brand .blob-btn__blob { background: #4A3728; }
+
+    /* Blob Button — Light: fundo escuro → off-white */
+    .blob-btn--light {
+      border-color: #FAFAFA;
+      color: #FAFAFA;
+    }
+    .blob-btn--light:hover { color: #4A3728; }
+    .blob-btn--light .blob-btn__blob { background: #FAFAFA; }
+
+    /* ─── GSAP reveal classes ─── */
+    .gs-fade { opacity: 0; transform: translateY(40px); }
+    .gs-fade-left { opacity: 0; transform: translateX(-60px); }
+    .gs-fade-right { opacity: 0; transform: translateX(60px); }
+
+    /* ─── Header ─── */
+    header { transition: background 0.3s ease, box-shadow 0.3s ease; }
+
+    /* ─── Section spacing helpers ─── */
+    .section-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #4A3728;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─── Planos Card Highlight ─── */
+    .plan-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(74,55,40,0.15);
+      padding: 2.5rem 2rem;
+      background: #FAFAFA;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .plan-card:hover { border-color: rgba(74,55,40,0.4); }
+    .plan-card--highlight {
+      background: #4A3728;
+      border: none;
+      color: #FAFAFA;
+      transform: scale(1.04) translateY(-8px);
+      box-shadow: 0 32px 64px rgba(74,55,40,0.28);
+    }
+    .plan-card--highlight:hover { transform: scale(1.04) translateY(-10px); }
+    .plan-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(250,250,250,0.55);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── Upgrade card ─── */
+    .upgrade-card {
+      border: 1px solid rgba(74,55,40,0.2);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* ─── Image hover zoom ─── */
+    .img-zoom { transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .img-zoom:hover { transform: scale(1.04); }
+
+    /* ─── Serif weight lift — melhora leitura sem brutalidade ─── */
+    h1, h2, h3 { font-weight: 500; }
+
+    /* ─── Quote block ─── */
+    blockquote {
+      border-left: 3px solid #4A3728;
+      padding-left: 1.25rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: #4A3728;
+      line-height: 1.8;
+    }
+
+    /* ─── Divider line ─── */
+    .rule { display: block; width: 48px; height: 1px; background: #4A3728; margin-bottom: 1.5rem; opacity: 0.4; }
+
+    /* ─── Footer ─── */
+    footer a { transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.7; }
+
+    /* ─── Responsive image aspect-ratio ─── */
+    .hero-img-wrap { position: absolute; inset: 0; z-index: 0; }
+
+    /* ─── Hero image mobile position ─── */
+    .hero-img { object-position: center top; }
+    @media (max-width: 767px) { .hero-img { object-position: 15% center; } }
+
+    /* ─── Hero text block responsive ─── */
+    .hero-text-block { max-width: 100%; }
+    @media (min-width: 768px) { .hero-text-block { max-width: 58%; } }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAFAFA; }
+    ::-webkit-scrollbar-thumb { background: rgba(74,55,40,0.3); border-radius: 3px; }
+  </style>
+</head>
+
+<body class="bg-bg text-ink">
+
+  <!-- SVG Gooey Filter (hidden, reusable) -->
+  <svg class="goo-filter" aria-hidden="true">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1 — HERO
+  ════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Apresentação Principal" class="relative w-full min-h-screen flex items-center overflow-hidden">
+
+    <!-- Hero image layer -->
+    <div class="hero-img-wrap">
+      <!-- dra-carla-hero.webp -->
+      <img
+        src="imagens/dra-carla-hero.webp"
+        alt="Dra. Carla Ribeiro — Especialista em Rejuvenescimento"
+        class="hero-img w-full h-full object-cover"
+        fetchpriority="high"
+      />
+    </div>
+
+    <!-- Gradient overlay — escuro para contraste off-white -->
+    <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none"></div>
+
+    <!-- Text block -->
+    <div class="hero-text-block relative z-20 w-full px-6 md:px-16 lg:px-20 pt-10 pb-12 md:pt-16 md:pb-20">
+      <!-- logo.webp — no lugar do label removido -->
+      <img
+        src="imagens/logo.webp"
+        alt="Odontologia Ribeiro"
+        class="h-[56px] md:h-[70px] w-auto object-contain brightness-0 invert mb-8 md:mb-10"
+        fetchpriority="high"
+      />
+
+      <h1 class="font-serif leading-[1.1] text-[#FAFAFA] mb-6 md:mb-8" style="font-size: clamp(2rem, 5.5vw, 5.2rem);">
+        Há algo profundamente
+        <br />
+        <span class="split-word" aria-label="FEMININO">
+          <span class="split-left">FEMI</span><span class="split-right">NINO</span>
+        </span>
+        <br />
+        em escolher como
+        <br />
+        você quer ser vista.
+      </h1>
+
+      <p class="hero-sub font-sans text-sm md:text-lg text-[#FAFAFA]/80 leading-relaxed mb-8 md:mb-10" style="max-width: 480px;">
+        Conheça o modelo de rejuvenescimento contínuo para mulheres que querem manter uma aparência bem cuidada, natural e equilibrada ao longo do ano inteiro.
+      </p>
+
+      <div class="hero-cta-wrap">
+        <a href="#planos" class="blob-btn blob-btn--light" aria-label="Conhecer o Clube do Botox">
+          Conheça o Clube do Botox
+          <span class="blob-btn__inner" aria-hidden="true">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2 — BENEFÍCIOS
+  ════════════════════════════════════════════ -->
+  <section id="beneficios" aria-label="Benefícios do Clube" class="py-28 md:py-36 px-6 md:px-20 bg-[#FAFAFA]">
+
+    <div class="max-w-6xl mx-auto">
+
+      <div class="gs-fade mb-20 text-center">
+        <span class="section-label" style="display:block; text-align:center;">Por que a continuidade muda tudo</span>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-brand leading-tight max-w-3xl mx-auto">
+          O que você realmente ganha quando deixa de reagir ao tempo e passa a se manter:
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Benefício 1 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você se mantém bem cuidada</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">Sua imagem não fica dependendo do momento em que o incômodo aparece. Ela continua transmitindo cuidado, presença e leveza.</p>
+        </article>
+
+        <!-- Benefício 2 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você preserva sua naturalidade</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">O acompanhamento contínuo evita a lógica do exagero. O resultado tende a parecer parte de você, não um evento no seu rosto.</p>
+        </article>
+
+        <!-- Benefício 3 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você ganha previsibilidade</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">Em vez de decisões de última hora, existe critério. Você sabe o que faz, quando faz e por que faz.</p>
+        </article>
+
+        <!-- Benefício 4 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você protege sua identidade</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">O objetivo não é transformar sua expressão. É preservar a harmonia do que já é seu.</p>
+        </article>
+
+        <!-- Benefício 5 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você se sente mais segura socialmente</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">Fotos, rotina, encontros, trabalho, compromissos: sua imagem continua coerente com a mulher que você é, sem ruído e sem artificialidade.</p>
+        </article>
+
+        <!-- Benefício 6 -->
+        <article class="gs-fade flex flex-col gap-4 p-8 border border-[#4A3728]/15 hover:border-[#4A3728]/40 transition-colors duration-300">
+          <div class="w-10 h-10 flex items-center justify-center border border-[#4A3728]/30 shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl text-ink">Você troca correção por continuidade</h3>
+          <p class="font-sans text-sm text-ink/65 leading-relaxed">Esse é o verdadeiro valor do plano: não viver em ciclos de "deixar chegar" e "tentar recuperar".</p>
+        </article>
+
+      </div>
+
+      <!-- CTA Benefícios -->
+      <div class="gs-fade text-center mt-20">
+        <a href="#planos" class="blob-btn blob-btn--brand" aria-label="Entender como funciona o Clube do Botox">
+          Quero entender como funciona
+          <span class="blob-btn__inner" aria-hidden="true">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3 — FUTURO PREDITIVO
+  ════════════════════════════════════════════ -->
+  <section id="futuro" aria-label="Medicina Preditiva e Rejuvenescimento Contínuo" class="bg-[#4A3728]/5 overflow-hidden">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] items-stretch">
+
+      <!-- Texto -->
+      <div class="py-28 md:py-36 px-6 md:px-16 lg:px-20 flex flex-col justify-center">
+        <span class="section-label gs-fade-left">Resultados ao longo do tempo</span>
+        <div class="rule gs-fade-left"></div>
+
+        <h2 class="gs-fade-left font-serif text-3xl md:text-4xl lg:text-5xl text-ink leading-tight mb-6">
+          Como você tende a se ver — e a ser percebida — ao longo do ano.
+        </h2>
+
+        <p class="gs-fade-left font-sans text-base text-ink/70 leading-relaxed mb-8 max-w-lg">
+          Esse cuidado não foi pensado para fazer você parecer outra pessoa. Foi pensado para que, daqui a alguns meses, você perceba algo silencioso e importante:
+        </p>
+
+        <blockquote class="gs-fade-left mb-10 max-w-md">
+          <p class="font-serif text-lg italic text-brand leading-relaxed">
+            "eu continuo com a minha cara."<br />
+            "só pareço mais descansada."<br />
+            "mais alinhada."<br />
+            "mais bem cuidada."
+          </p>
+        </blockquote>
+
+        <p class="gs-fade-left font-sans text-sm font-medium text-brand uppercase tracking-widest mb-6">Na prática, isso tende a aparecer assim:</p>
+
+        <ul class="gs-fade-left space-y-4 mb-10">
+          <li class="flex gap-3 items-start">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span class="font-sans text-sm text-ink/75 leading-relaxed"><strong class="text-ink font-medium">Seu rosto transmite menos cansaço:</strong> Mesmo em fases intensas, sua expressão continua mais leve.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span class="font-sans text-sm text-ink/75 leading-relaxed"><strong class="text-ink font-medium">Sua imagem permanece mais estável:</strong> Sem grandes oscilações entre "estava bem" e "agora preciso correr atrás".</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span class="font-sans text-sm text-ink/75 leading-relaxed"><strong class="text-ink font-medium">Você se reconhece no espelho:</strong> Com mais harmonia, sem perder traços, feminilidade ou identidade.</span>
+          </li>
+          <li class="flex gap-3 items-start">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span class="font-sans text-sm text-ink/75 leading-relaxed"><strong class="text-ink font-medium">Você sustenta uma presença mais segura:</strong> Não porque mudou. Mas porque sua imagem continua acompanhando sua energia, sua fase e sua elegância.</span>
+          </li>
+        </ul>
+
+        <p class="gs-fade-left font-sans text-sm text-ink/60 leading-relaxed italic mb-10 max-w-md">
+          O resultado ideal não é chamar atenção pelo que foi feito. É fazer com que sua presença continue sendo a primeira coisa que as pessoas percebem.
+        </p>
+
+        <div class="gs-fade-left">
+          <a href="#planos" class="blob-btn blob-btn--brand" aria-label="Ver como me ver assim">
+            Quero me ver assim
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Imagem assimétrica -->
+      <div class="relative min-h-[480px] lg:min-h-0 overflow-hidden">
+        <!-- foto-doutora-02.webp -->
+        <img
+          src="imagens/foto-doutora-02.webp"
+          alt="Doutora realizando procedimento estético com naturalidade"
+          class="img-zoom gs-fade-right absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4 — PLANOS
+  ════════════════════════════════════════════ -->
+  <section id="planos" aria-label="Planos e Preços do Clube do Botox" class="py-28 md:py-36 px-6 md:px-10 bg-[#FAFAFA]">
+
+    <div class="max-w-6xl mx-auto">
+
+      <div class="gs-fade text-center mb-20">
+        <span class="section-label" style="display:block; text-align:center;">Clube do Botox</span>
+        <div class="rule" style="margin-left:auto;margin-right:auto;"></div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-brand leading-tight mb-4">
+          Escolha o plano que acompanha<br />a forma como você quer se manter.
+        </h2>
+        <p class="font-sans text-base text-ink/65 leading-relaxed max-w-2xl mx-auto">
+          Cada plano foi pensado para um nível de cuidado, constância e objetivo estético. Todos seguem o mesmo princípio: naturalidade, previsibilidade e acompanhamento profissional ao longo do ano.
+        </p>
+      </div>
+
+      <!-- Bento Grid — 3 planos principais -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start mb-8">
+
+        <!-- Plano 1: Clean Three -->
+        <article class="gs-fade plan-card">
+          <h3 class="font-serif text-2xl text-ink mb-1">Clean Three</h3>
+          <p class="font-sans text-xs text-ink/50 uppercase tracking-widest mb-6">Para o essencial com leveza e constância</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">3 aplicações de Botox full face</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">Ideal para mulheres que querem prevenção e manutenção básica</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">Mais praticidade para se manter bem ao longo do ano</span>
+            </li>
+          </ul>
+
+          <div class="border-t border-[#4A3728]/10 pt-6 mb-8">
+            <p class="font-serif text-3xl text-ink" style="font-weight:500;">12× de <strong>R$ 380,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Clean%20Three%20(12x%20de%20R%24%20380%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand w-full justify-center"
+            aria-label="Quero o plano Clean Three"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+        <!-- Plano 2: Botox Three + Kiss (DESTAQUE) -->
+        <article class="gs-fade plan-card plan-card--highlight">
+          <p class="plan-tag">Mais escolhido</p>
+          <h3 class="font-serif text-2xl text-[#FAFAFA] mb-1">Botox Three + Kiss</h3>
+          <p class="font-sans text-xs text-[#FAFAFA]/50 uppercase tracking-widest mb-6">Para suavização facial com toque extra de feminilidade</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 items-start">
+              <span class="text-[#FAFAFA]/50 mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-[#FAFAFA]/80 leading-relaxed">3 aplicações de Botox full face</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-[#FAFAFA]/50 mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-[#FAFAFA]/80 leading-relaxed">1 preenchimento labial</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-[#FAFAFA]/50 mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-[#FAFAFA]/80 leading-relaxed">Ideal para quem deseja um resultado leve, delicado e mais completo</span>
+            </li>
+          </ul>
+
+          <div class="border-t border-[#FAFAFA]/15 pt-6 mb-8">
+            <p class="font-serif text-3xl text-[#FAFAFA]" style="font-weight:500;">12× de <strong>R$ 450,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Botox%20Three%20%2B%20Kiss%20(12x%20de%20R%24%20450%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--light w-full justify-center"
+            aria-label="Quero o plano Botox Three + Kiss"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+        <!-- Plano 3: Botox Three + Collagen Basic -->
+        <article class="gs-fade plan-card">
+          <h3 class="font-serif text-2xl text-ink mb-1">Botox Three + Collagen Basic</h3>
+          <p class="font-sans text-xs text-ink/50 uppercase tracking-widest mb-6">Para rejuvenescimento com estímulo estrutural</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">3 aplicações de Botox full face</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">1 bioestimulador</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand mt-0.5" aria-hidden="true">—</span>
+              <span class="font-sans text-sm text-ink/70 leading-relaxed">Ideal para quem deseja mais firmeza, qualidade de pele e suporte ao envelhecimento</span>
+            </li>
+          </ul>
+
+          <div class="border-t border-[#4A3728]/10 pt-6 mb-8">
+            <p class="font-serif text-3xl text-ink" style="font-weight:500;">12× de <strong>R$ 580,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Botox%20Three%20%2B%20Collagen%20Basic%20(12x%20de%20R%24%20580%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand w-full justify-center"
+            aria-label="Quero o plano Botox Three + Collagen Basic"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- Upgrade Card -->
+      <div class="gs-fade upgrade-card bg-[#4A3728]/4 border border-[#4A3728]/15 mt-4">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div class="flex-1">
+            <span class="section-label">Protocolo avançado</span>
+            <h3 class="font-serif text-2xl md:text-3xl text-ink mb-3">Upgrade — Planos Personalizados</h3>
+            <p class="font-sans text-sm text-ink/65 leading-relaxed max-w-xl">
+              Para mulheres que desejam um protocolo mais avançado e desenhado sob medida. Combine seu plano de Botox com estratégias complementares, como: <strong class="text-ink font-medium">Pills Post (A.H.), Thread (Fios), Skin (Gerenciamento de Pele)</strong>. Ideal para quem quer um rejuvenescimento mais completo, com abordagem personalizada.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a
+              href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Gostaria%20de%20conhecer%20os%20Planos%20Personalizados%20(Upgrade)%20e%20agendar%20minha%20avaliação%20individualizada."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blob-btn blob-btn--brand"
+              aria-label="Quero minha avaliação personalizada"
+            >
+              Quero minha avaliação
+              <span class="blob-btn__inner" aria-hidden="true">
+                <span class="blob-btn__blobs">
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5 — QUEM SOMOS
+  ════════════════════════════════════════════ -->
+  <section id="quem-somos" aria-label="Sobre a Odontologia Ribeiro" class="bg-[#4A3728]/5 overflow-hidden">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[45%_55%] items-stretch">
+
+      <!-- Imagem (esquerda) -->
+      <div class="relative min-h-[480px] lg:min-h-0 overflow-hidden order-2 lg:order-1">
+        <!-- foto-doutora-03.webp -->
+        <img
+          src="imagens/foto-doutora-03.webp"
+          alt="Equipe Odontologia Ribeiro — cuidado individualizado com elegância"
+          class="img-zoom gs-fade-left absolute inset-0 w-full h-full object-cover object-top"
+        />
+      </div>
+
+      <!-- Texto (direita) -->
+      <div class="py-28 md:py-36 px-6 md:px-16 lg:px-20 flex flex-col justify-center order-1 lg:order-2">
+        <span class="section-label gs-fade-right">Quem somos</span>
+        <div class="rule gs-fade-right"></div>
+
+        <h2 class="gs-fade-right font-serif text-3xl md:text-4xl lg:text-5xl text-ink leading-tight mb-8">
+          Odontologia<br />Ribeiro
+        </h2>
+
+        <p class="gs-fade-right font-sans text-base text-ink/70 leading-relaxed mb-10 max-w-lg">
+          Na Odontologia Ribeiro, acreditamos que cuidar da imagem é também uma forma de preservar presença, identidade e confiança. Por isso, criamos protocolos de rejuvenescimento contínuo para mulheres que desejam se manter bem cuidada ao longo do ano, com naturalidade, critério e elegância.
+        </p>
+
+        <blockquote class="gs-fade-right mb-10 max-w-md">
+          <p class="font-serif text-lg italic text-brand leading-relaxed">
+            Mais do que procedimentos, oferecemos um olhar individualizado sobre a beleza que permanece você.
+          </p>
+        </blockquote>
+
+        <div class="gs-fade-right">
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Clube%20do%20Botox%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand"
+            aria-label="Agendar no WhatsApp"
+          >
+            Agendar no WhatsApp
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer role="contentinfo" class="bg-brand text-[#FAFAFA] py-10 px-6 md:px-20">
+    <div class="max-w-4xl mx-auto flex flex-col items-center gap-5">
+
+      <!-- logo.webp -->
+      <img
+        src="imagens/logo.webp"
+        alt="Odontologia Ribeiro"
+        class="h-[72px] w-auto object-contain brightness-0 invert"
+      />
+
+      <p class="font-sans text-xs text-[#FAFAFA]/30 text-center">
+        © 2025 Odontologia Ribeiro. Todos os direitos reservados.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JS — GSAP ScrollTrigger Reveals
+  ════════════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Wait for GSAP to load
+      function initGSAP() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+          setTimeout(initGSAP, 100);
+          return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Generic fade up
+        gsap.utils.toArray('.gs-fade').forEach(function (el) {
+          gsap.fromTo(el,
+            { opacity: 0, y: 44 },
+            {
+              opacity: 1, y: 0,
+              duration: 0.9,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              }
+            }
+          );
+        });
+
+        // Fade from left
+        gsap.utils.toArray('.gs-fade-left').forEach(function (el) {
+          gsap.fromTo(el,
+            { opacity: 0, x: -60 },
+            {
+              opacity: 1, x: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              }
+            }
+          );
+        });
+
+        // Fade from right
+        gsap.utils.toArray('.gs-fade-right').forEach(function (el) {
+          gsap.fromTo(el,
+            { opacity: 0, x: 60 },
+            {
+              opacity: 1, x: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none',
+              }
+            }
+          );
+        });
+
+        // Header shadow on scroll
+        var header = document.querySelector('header');
+        ScrollTrigger.create({
+          start: 'top -80',
+          onUpdate: function (self) {
+            if (self.scroller.scrollY > 80) {
+              header.style.boxShadow = '0 2px 24px rgba(74,55,40,0.08)';
+            } else {
+              header.style.boxShadow = 'none';
+            }
+          }
+        });
+      }
+
+      initGSAP();
+
+      // Smooth scroll to #planos with centering
+      document.querySelectorAll('a[href="#planos"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById('planos');
+          if (target) {
+            var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+            var offset = window.innerHeight / 2 - target.offsetHeight / 2;
+            var scrollTo = targetTop - Math.max(offset, 80);
+            window.scrollTo({ top: Math.max(scrollTo, 0), behavior: 'smooth' });
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
