@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clube do Botox — Odontologia Ribeiro</title>
+  <meta name="description" content="Modelo de rejuvenescimento contínuo para mulheres que querem manter uma aparência bem cuidada, natural e equilibrada ao longo do ano inteiro." />
+
+  <!-- ═══ PERFORMANCE: Preconnect crítico ═══ -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+
+  <!-- ═══ PERFORMANCE: Preload LCP image (hero) ═══ -->
+  <link rel="preload" as="image" href="imagens/dra-carla-hero.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="imagens/logo.webp" />
+
+  <!-- ═══ PERFORMANCE: Fonts — non-blocking via media trick ═══ -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" />
+  </noscript>
+
+  <!-- CSS crítico 100% inline — zero dependência externa no render path -->
+
+  <style>
+    /* ════════════════════════════════════════════════════════════════
+       CSS COMPLETO INLINE — sem dependência de Tailwind no first paint
+       Tailwind é carregado de forma assíncrona após window.load
+    ════════════════════════════════════════════════════════════════ */
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #FAFAFA; color: #1A1A1A; font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    h1, h2, h3 { font-weight: 500; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Layout Utilities ─── */
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+    .inset-0 { inset: 0; }
+    .w-full { width: 100%; }
+    .h-full { height: 100%; }
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .block { display: block; }
+    .overflow-hidden { overflow: hidden; }
+    .shrink-0 { flex-shrink: 0; }
+    .flex-1 { flex: 1; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .items-stretch { align-items: stretch; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; }
+    .gap-6 { gap: 1.5rem; }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .z-0 { z-index: 0; }
+    .z-10 { z-index: 10; }
+    .z-20 { z-index: 20; }
+    .z-50 { z-index: 50; }
+    .pointer-events-none { pointer-events: none; }
+    .border-t { border-top: 1px solid currentColor; }
+    .leading-tight { line-height: 1.25; }
+    .leading-relaxed { line-height: 1.625; }
+    .italic { font-style: italic; }
+    .uppercase { text-transform: uppercase; }
+    .object-cover { object-fit: cover; }
+    .object-contain { object-fit: contain; }
+    .object-center { object-position: center; }
+    .object-top { object-position: top; }
+    .w-auto { width: auto; }
+    .min-h-screen { min-height: 100svh; }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .space-y-4 > * + * { margin-top: 1rem; }
+
+    /* ─── Max-width containers ─── */
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-4xl { max-width: 56rem; }
+    .max-w-6xl { max-width: 72rem; }
+    .max-w-7xl { max-width: 80rem; }
+    .max-w-md  { max-width: 28rem; }
+    .max-w-lg  { max-width: 32rem; }
+    .max-w-xl  { max-width: 36rem; }
+    .max-w-2xl { max-width: 42rem; }
+
+    /* ─── Typography helpers ─── */
+    .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+    .font-sans  { font-family: 'Inter', system-ui, sans-serif; }
+    .text-xs   { font-size: 0.75rem; }
+    .text-sm   { font-size: 0.875rem; }
+    .text-base { font-size: 1rem; }
+    .text-lg   { font-size: 1.125rem; }
+    .text-xl   { font-size: 1.25rem; }
+    .text-2xl  { font-size: 1.5rem; }
+    .text-3xl  { font-size: 1.875rem; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .tracking-widest { letter-spacing: 0.1em; }
+
+    /* ─── Colors ─── */
+    .bg-\[\#FAFAFA\] { background-color: #FAFAFA; }
+    .text-ink { color: #1A1A1A; }
+    .text-brand { color: #4A3728; }
+    .text-\[\#FAFAFA\] { color: #FAFAFA; }
+    .bg-brand { background-color: #4A3728; }
+
+    /* ─── Spacing — padding ─── */
+    .p-8  { padding: 2rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-10{ padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .pt-6 { padding-top: 1.5rem; }
+    .pb-8 { padding-bottom: 2rem; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-10{ margin-bottom: 2.5rem; }
+    .mb-20{ margin-bottom: 5rem; }
+    .mt-0\.5 { margin-top: 0.125rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-20 { margin-top: 5rem; }
+
+    /* ─── Border helpers ─── */
+    .border  { border-width: 1px; border-style: solid; }
+    .border-2 { border-width: 2px; border-style: solid; }
+    .rounded-full { border-radius: 9999px; }
+
+    /* ─── Brightness filter ─── */
+    .brightness-0 { filter: brightness(0); }
+    .invert { filter: invert(1); }
+    .brightness-0.invert { filter: brightness(0) invert(1); }
+
+    /* ─── Opacity helpers ─── */
+    .opacity-0 { opacity: 0; }
+
+    /* ─── Split-Text: FEMININO ─── */
+    .split-word { display: inline-flex; overflow: hidden; }
+    .split-left {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(-70px);
+      animation: slideInLeft 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+    .split-right {
+      display: inline-block;
+      opacity: 0;
+      transform: translateX(70px);
+      animation: slideInRight 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+    @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+
+    /* ─── Hero Fade-in ─── */
+    .hero-sub, .hero-cta-wrap {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+    }
+    .hero-cta-wrap { animation-delay: 1.1s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ─── SVG Gooey Filter ─── */
+    .goo-filter { position: absolute; width: 0; height: 0; }
+
+    /* ─── Blob Button — Base ─── */
+    .blob-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.4rem;
+      border: 2px solid #4A3728;
+      border-radius: 9999px;
+      background: transparent;
+      color: #4A3728;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+      text-decoration: none;
+      transition: color 0.45s ease;
+    }
+    .blob-btn:hover { color: #FAFAFA; }
+    .blob-btn__inner {
+      position: absolute; inset: -2px; border-radius: 9999px;
+      overflow: hidden; filter: url(#goo); z-index: -1;
+    }
+    .blob-btn__blobs { position: absolute; inset: 0; display: flex; }
+    .blob-btn__blob {
+      position: absolute; width: 42%; aspect-ratio: 1; border-radius: 50%;
+      background: #4A3728; transform: translate3d(0, 160%, 0) scale(1.8);
+      transition: transform 0.48s ease;
+    }
+    .blob-btn:hover .blob-btn__blob { transform: translate3d(0, 0%, 0) scale(1.8); }
+    .blob-btn__blob:nth-child(1) { left: -12%; transition-delay: 0s; }
+    .blob-btn__blob:nth-child(2) { left: 22%;  transition-delay: 0.08s; }
+    .blob-btn__blob:nth-child(3) { left: 55%;  transition-delay: 0.16s; }
+    .blob-btn__blob:nth-child(4) { left: 82%;  transition-delay: 0.24s; }
+    .blob-btn--brand { border-color: #4A3728; color: #4A3728; }
+    .blob-btn--brand:hover { color: #FAFAFA; }
+    .blob-btn--brand .blob-btn__blob { background: #4A3728; }
+    .blob-btn--light { border-color: #FAFAFA; color: #FAFAFA; }
+    .blob-btn--light:hover { color: #4A3728; }
+    .blob-btn--light .blob-btn__blob { background: #FAFAFA; }
+
+    /* ─── Scroll reveal — estado inicial (IntersectionObserver) ─── */
+    .gs-fade       { opacity: 0; transform: translateY(40px); }
+    .gs-fade-left  { opacity: 0; transform: translateX(-60px); }
+    .gs-fade-right { opacity: 0; transform: translateX(60px); }
+
+    /* Estado visível — ativado pelo Observer via classe .is-visible */
+    .gs-fade.is-visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gs-fade-left.is-visible {
+      opacity: 1; transform: translateX(0);
+      transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gs-fade-right.is-visible {
+      opacity: 1; transform: translateX(0);
+      transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Usuários que preferem menos movimento */
+    @media (prefers-reduced-motion: reduce) {
+      .gs-fade, .gs-fade-left, .gs-fade-right { opacity: 1; transform: none; }
+    }
+
+    /* ─── Header ─── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* ─── Nav ─── */
+    .nav-link {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #FAFAFA; text-decoration: none;
+      opacity: 0.75; transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
+    nav { display: none; gap: 2rem; }
+
+    /* ─── Section spacing helpers ─── */
+    .section-label {
+      display: block; font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.35em;
+      text-transform: uppercase; color: #4A3728; margin-bottom: 1.2rem;
+    }
+
+    /* ─── Hero — layout ─── */
+    #hero {
+      position: relative; width: 100%; min-height: 100svh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-img-wrap { position: absolute; inset: 0; z-index: 0; }
+    .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    @media (max-width: 767px) { .hero-img { object-position: 15% center; } }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 10;
+      background: linear-gradient(to right, rgba(0,0,0,0.60), rgba(0,0,0,0.30), transparent);
+      pointer-events: none;
+    }
+    .hero-text-block {
+      position: relative; z-index: 20; width: 100%;
+      padding: 5rem 1.5rem 3rem; max-width: 100%;
+    }
+    .hero-logo {
+      height: 56px; width: auto; object-fit: contain;
+      filter: brightness(0) invert(1); margin-bottom: 2rem; display: block;
+    }
+    .hero-h1 {
+      font-family: 'Playfair Display', Georgia, serif; line-height: 1.1;
+      color: #FAFAFA; margin-bottom: 1.5rem;
+      font-size: clamp(2rem, 5.5vw, 5.2rem); font-weight: 500;
+    }
+    .hero-p {
+      font-family: 'Inter', system-ui, sans-serif; font-size: 0.9rem;
+      color: rgba(250,250,250,0.80); line-height: 1.7;
+      margin-bottom: 2rem; max-width: 480px;
+    }
+
+    /* ─── Sections layout ─── */
+    section { display: block; }
+    #beneficios { padding: 7rem 1.5rem; background: #FAFAFA; }
+    #futuro { background: rgba(74,55,40,0.05); overflow: hidden; }
+    #planos { padding: 7rem 1.5rem; background: #FAFAFA; }
+    #quem-somos { background: rgba(74,55,40,0.05); overflow: hidden; }
+
+    /* ─── Grid layouts ─── */
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-beneficios { grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
+    .grid-planos { grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+    .grid-split { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-split-rev { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+
+    /* ─── Planos cards ─── */
+    .plan-card {
+      position: relative; display: flex; flex-direction: column;
+      border: 1px solid rgba(74,55,40,0.15); padding: 2.5rem 2rem;
+      background: #FAFAFA; transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .plan-card:hover { border-color: rgba(74,55,40,0.4); }
+    .plan-card--highlight {
+      background: #4A3728; border: none; color: #FAFAFA;
+      transform: scale(1.04) translateY(-8px);
+      box-shadow: 0 32px 64px rgba(74,55,40,0.28);
+    }
+    .plan-card--highlight:hover { transform: scale(1.04) translateY(-10px); }
+    .plan-tag {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      font-weight: 600; color: rgba(250,250,250,0.55); margin-bottom: 0.5rem;
+    }
+    .plan-price { font-family: 'Playfair Display', Georgia, serif; font-size: 1.875rem; font-weight: 500; }
+
+    /* ─── Upgrade card ─── */
+    .upgrade-card {
+      border: 1px solid rgba(74,55,40,0.2); padding: 2.5rem 2rem;
+      display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;
+      background: rgba(74,55,40,0.04);
+    }
+
+    /* ─── Image hover zoom ─── */
+    .img-zoom { transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .img-zoom:hover { transform: scale(1.04); }
+
+    /* ─── Quote block ─── */
+    blockquote {
+      border-left: 3px solid #4A3728; padding-left: 1.25rem;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-weight: 500; color: #4A3728; line-height: 1.8;
+    }
+
+    /* ─── Divider line ─── */
+    .rule { display: block; width: 48px; height: 1px; background: #4A3728; margin-bottom: 1.5rem; opacity: 0.4; }
+
+    /* ─── Footer ─── */
+    footer { background: #4A3728; color: #FAFAFA; padding: 2.5rem 1.5rem; }
+    footer a { transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.7; }
+    .footer-inner {
+      max-width: 56rem; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    }
+    .footer-logo { height: 72px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+    .footer-copy { font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; color: rgba(250,250,250,0.3); text-align: center; }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAFAFA; }
+    ::-webkit-scrollbar-thumb { background: rgba(74,55,40,0.3); border-radius: 3px; }
+
+    /* ─── Benefit cards ─── */
+    .benefit-card {
+      display: flex; flex-direction: column; gap: 1rem; padding: 2rem;
+      border: 1px solid rgba(74,55,40,0.15);
+      transition: border-color 0.3s;
+    }
+    .benefit-card:hover { border-color: rgba(74,55,40,0.4); }
+    .benefit-icon {
+      width: 2.5rem; height: 2.5rem; display: flex; align-items: center;
+      justify-content: center; border: 1px solid rgba(74,55,40,0.3); flex-shrink: 0;
+    }
+    .benefit-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; color: #1A1A1A; }
+    .benefit-text { font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; color: rgba(26,26,26,0.65); line-height: 1.625; }
+
+    /* ─── Section headings ─── */
+    .section-h2 { font-family: 'Playfair Display', Georgia, serif; color: #4A3728; line-height: 1.25; font-weight: 500; }
+    .section-h2-ink { font-family: 'Playfair Display', Georgia, serif; color: #1A1A1A; line-height: 1.25; font-weight: 500; }
+    .body-text { font-family: 'Inter', system-ui, sans-serif; font-size: 1rem; color: rgba(26,26,26,0.70); line-height: 1.625; }
+
+    /* ─── Split section (Futuro / Quem Somos) ─── */
+    .split-text-col {
+      padding: 7rem 1.5rem; display: flex; flex-direction: column; justify-content: center;
+    }
+    .split-img-col {
+      position: relative; min-height: 480px; overflow: hidden;
+    }
+    .split-img-col img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+    }
+
+    /* ─── Responsive breakpoints ─── */
+    @media (min-width: 768px) {
+      header { padding: 1.25rem 5rem; }
+      nav { display: flex; }
+      #beneficios { padding: 9rem 5rem; }
+      #planos { padding: 9rem 2.5rem; }
+      .hero-text-block { max-width: 58%; padding: 6rem 5rem 5rem; }
+      .hero-logo { height: 70px; margin-bottom: 2.5rem; }
+      .hero-p { font-size: 1.125rem; }
+      .grid-beneficios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-planos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .split-text-col { padding: 9rem 4rem 9rem 5rem; }
+      .upgrade-inner { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    }
+    @media (min-width: 1024px) {
+      .grid-beneficios { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-split { grid-template-columns: 55% 45%; }
+      .grid-split-rev { grid-template-columns: 45% 55%; }
+      .split-img-col { min-height: 0; }
+      .split-text-col { padding: 9rem 5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SVG Gooey Filter (hidden, reusable) -->
+  <svg class="goo-filter" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1 — HERO
+  ════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Apresentação Principal">
+
+    <!-- Hero image layer -->
+    <div class="hero-img-wrap">
+      <!-- dra-carla-hero.webp -->
+      <img
+        src="imagens/dra-carla-hero.webp"
+        alt="Dra. Carla Ribeiro — Especialista em Rejuvenescimento"
+        class="hero-img w-full h-full object-cover"
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+      />
+    </div>
+
+    <!-- Gradient overlay — escuro para contraste off-white -->
+    <div style="position:absolute;inset:0;z-index:10;background:linear-gradient(to right,rgba(0,0,0,0.60),rgba(0,0,0,0.30),transparent);pointer-events:none;" aria-hidden="true"></div>
+
+    <!-- Text block -->
+    <div class="hero-text-block">
+      <!-- logo.webp — no lugar do label removido -->
+      <img
+        src="imagens/logo.webp"
+        alt="Odontologia Ribeiro"
+        class="hero-logo"
+        fetchpriority="high"
+      />
+
+      <h1 class="hero-h1">
+        Há algo profundamente
+        <br />
+        <span class="split-word" aria-label="FEMININO">
+          <span class="split-left">FEMI</span><span class="split-right">NINO</span>
+        </span>
+        <br />
+        em escolher como
+        <br />
+        você quer ser vista.
+      </h1>
+
+      <p class="hero-sub hero-p">
+        Conheça o modelo de rejuvenescimento contínuo para mulheres que querem manter uma aparência bem cuidada, natural e equilibrada ao longo do ano inteiro.
+      </p>
+
+      <div class="hero-cta-wrap">
+        <a href="#planos" class="blob-btn blob-btn--light" aria-label="Conhecer o Clube do Botox">
+          Conheça o Clube do Botox
+          <span class="blob-btn__inner" aria-hidden="true">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2 — BENEFÍCIOS
+  ════════════════════════════════════════════ -->
+  <section id="beneficios" aria-label="Benefícios do Clube">
+
+    <div style="max-width:72rem;margin:0 auto;">
+
+      <div class="gs-fade" style="margin-bottom:5rem;text-align:center;">
+        <span class="section-label" style="display:block; text-align:center;">Por que a continuidade muda tudo</span>
+        <h2 class="section-h2" style="font-size:clamp(1.875rem,4vw,3rem);max-width:48rem;margin:0 auto;">
+          O que você realmente ganha quando deixa de reagir ao tempo e passa a se manter:
+        </h2>
+      </div>
+
+      <div class="grid grid-beneficios">
+
+        <!-- Benefício 1 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você se mantém bem cuidada</h3>
+          <p class="benefit-text">Sua imagem não fica dependendo do momento em que o incômodo aparece. Ela continua transmitindo cuidado, presença e leveza.</p>
+        </article>
+
+        <!-- Benefício 2 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você preserva sua naturalidade</h3>
+          <p class="benefit-text">O acompanhamento contínuo evita a lógica do exagero. O resultado tende a parecer parte de você, não um evento no seu rosto.</p>
+        </article>
+
+        <!-- Benefício 3 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você ganha previsibilidade</h3>
+          <p class="benefit-text">Em vez de decisões de última hora, existe critério. Você sabe o que faz, quando faz e por que faz.</p>
+        </article>
+
+        <!-- Benefício 4 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você protege sua identidade</h3>
+          <p class="benefit-text">O objetivo não é transformar sua expressão. É preservar a harmonia do que já é seu.</p>
+        </article>
+
+        <!-- Benefício 5 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você se sente mais segura socialmente</h3>
+          <p class="benefit-text">Fotos, rotina, encontros, trabalho, compromissos: sua imagem continua coerente com a mulher que você é, sem ruído e sem artificialidade.</p>
+        </article>
+
+        <!-- Benefício 6 -->
+        <article class="gs-fade benefit-card">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A3728" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Você troca correção por continuidade</h3>
+          <p class="benefit-text">Esse é o verdadeiro valor do plano: não viver em ciclos de "deixar chegar" e "tentar recuperar".</p>
+        </article>
+
+      </div>
+
+      <!-- CTA Benefícios -->
+      <div class="gs-fade" style="text-align:center;margin-top:5rem;">
+        <a href="#planos" class="blob-btn blob-btn--brand" aria-label="Entender como funciona o Clube do Botox">
+          Quero entender como funciona
+          <span class="blob-btn__inner" aria-hidden="true">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3 — FUTURO PREDITIVO
+  ════════════════════════════════════════════ -->
+  <section id="futuro" aria-label="Medicina Preditiva e Rejuvenescimento Contínuo">
+
+    <div style="max-width:80rem;margin:0 auto;" class="grid grid-split items-stretch">
+
+      <!-- Texto -->
+      <div class="split-text-col">
+        <span class="section-label gs-fade-left">Resultados ao longo do tempo</span>
+        <div class="rule gs-fade-left"></div>
+
+        <h2 class="gs-fade-left section-h2-ink" style="font-size:clamp(1.875rem,4vw,3rem);margin-bottom:1.5rem;">
+          Como você tende a se ver — e a ser percebida — ao longo do ano.
+        </h2>
+
+        <p class="gs-fade-left body-text" style="margin-bottom:2rem;max-width:32rem;">
+          Esse cuidado não foi pensado para fazer você parecer outra pessoa. Foi pensado para que, daqui a alguns meses, você perceba algo silencioso e importante:
+        </p>
+
+        <blockquote class="gs-fade-left" style="margin-bottom:2.5rem;max-width:28rem;">
+          <p style="font-family:'Playfair Display',Georgia,serif;font-size:1.125rem;font-style:italic;color:#4A3728;line-height:1.8;">
+            "eu continuo com a minha cara."<br />
+            "só pareço mais descansada."<br />
+            "mais alinhada."<br />
+            "mais bem cuidada."
+          </p>
+        </blockquote>
+
+        <p class="gs-fade-left" style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;font-weight:500;color:#4A3728;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.5rem;">Na prática, isso tende a aparecer assim:</p>
+
+        <ul class="gs-fade-left" style="margin-bottom:2.5rem;display:flex;flex-direction:column;gap:1rem;">
+          <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.75);line-height:1.625;"><strong style="color:#1A1A1A;font-weight:500;">Seu rosto transmite menos cansaço:</strong> Mesmo em fases intensas, sua expressão continua mais leve.</span>
+          </li>
+          <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.75);line-height:1.625;"><strong style="color:#1A1A1A;font-weight:500;">Sua imagem permanece mais estável:</strong> Sem grandes oscilações entre "estava bem" e "agora preciso correr atrás".</span>
+          </li>
+          <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.75);line-height:1.625;"><strong style="color:#1A1A1A;font-weight:500;">Você se reconhece no espelho:</strong> Com mais harmonia, sem perder traços, feminilidade ou identidade.</span>
+          </li>
+          <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+            <span class="mt-1 w-1 h-1 rounded-full bg-brand shrink-0 block" aria-hidden="true" style="width:6px;height:6px;min-width:6px;min-height:6px;margin-top:8px;"></span>
+            <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.75);line-height:1.625;"><strong style="color:#1A1A1A;font-weight:500;">Você sustenta uma presença mais segura:</strong> Não porque mudou. Mas porque sua imagem continua acompanhando sua energia, sua fase e sua elegância.</span>
+          </li>
+        </ul>
+
+        <p class="gs-fade-left" style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.60);line-height:1.625;font-style:italic;margin-bottom:2.5rem;max-width:28rem;">
+          O resultado ideal não é chamar atenção pelo que foi feito. É fazer com que sua presença continue sendo a primeira coisa que as pessoas percebem.
+        </p>
+
+        <div class="gs-fade-left" style="display:inline-block;">
+          <a href="#planos" class="blob-btn blob-btn--brand" aria-label="Ver como me ver assim">
+            Quero me ver assim
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Imagem assimétrica -->
+      <div class="split-img-col">
+        <!-- foto-doutora-02.webp -->
+        <img
+          src="imagens/foto-doutora-02.webp"
+          alt="Doutora realizando procedimento estético com naturalidade"
+          width="800" height="1000"
+          class="img-zoom gs-fade-right" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"
+        loading="lazy"
+      />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4 — PLANOS
+  ════════════════════════════════════════════ -->
+  <section id="planos" aria-label="Planos e Preços do Clube do Botox">
+
+    <div style="max-width:72rem;margin:0 auto;">
+
+      <div class="gs-fade" style="text-align:center;margin-bottom:5rem;">
+        <span class="section-label" style="display:block; text-align:center;">Clube do Botox</span>
+        <div class="rule" style="margin-left:auto;margin-right:auto;"></div>
+        <h2 class="section-h2" style="font-size:clamp(1.875rem,4vw,3rem);margin-bottom:1rem;">
+          Escolha o plano que acompanha<br />a forma como você quer se manter.
+        </h2>
+        <p class="body-text" style="color:rgba(26,26,26,0.65);max-width:42rem;margin:0 auto;">
+          Cada plano foi pensado para um nível de cuidado, constância e objetivo estético. Todos seguem o mesmo princípio: naturalidade, previsibilidade e acompanhamento profissional ao longo do ano.
+        </p>
+      </div>
+
+      <!-- Grid — 3 planos principais -->
+      <div class="grid grid-planos" style="margin-bottom:2rem;">
+
+        <!-- Plano 1: Clean Three -->
+        <article class="gs-fade plan-card">
+          <h3 class="font-serif" style="font-size:1.5rem;color:#1A1A1A;margin-bottom:0.25rem;font-family:'Playfair Display',Georgia,serif;font-weight:500;">Clean Three</h3>
+          <p style="font-family:'Inter',system-ui,sans-serif;font-size:0.75rem;color:rgba(26,26,26,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.5rem;">Para o essencial com leveza e constância</p>
+
+          <ul style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;flex:1;">
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">3 aplicações de Botox full face</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">Ideal para mulheres que querem prevenção e manutenção básica</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">Mais praticidade para se manter bem ao longo do ano</span>
+            </li>
+          </ul>
+
+          <div style="border-top:1px solid rgba(74,55,40,0.10);padding-top:1.5rem;margin-bottom:2rem;">
+            <p class="plan-price" style="color:#1A1A1A;" style="font-weight:500;">12× de <strong>R$ 380,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Clean%20Three%20(12x%20de%20R%24%20380%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand" style="width:100%;justify-content:center;"
+            aria-label="Quero o plano Clean Three"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+        <!-- Plano 2: Botox Three + Kiss (DESTAQUE) -->
+        <article class="gs-fade plan-card plan-card--highlight">
+          <p class="plan-tag">Mais escolhido</p>
+          <h3 class="font-serif" style="font-size:1.5rem;color:#FAFAFA;margin-bottom:0.25rem;font-family:'Playfair Display',Georgia,serif;font-weight:500;">Botox Three + Kiss</h3>
+          <p style="font-family:'Inter',system-ui,sans-serif;font-size:0.75rem;color:rgba(250,250,250,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.5rem;">Para suavização facial com toque extra de feminilidade</p>
+
+          <ul style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;flex:1;">
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:rgba(250,250,250,0.5);margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(250,250,250,0.80);line-height:1.625;">3 aplicações de Botox full face</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:rgba(250,250,250,0.5);margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(250,250,250,0.80);line-height:1.625;">1 preenchimento labial</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:rgba(250,250,250,0.5);margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(250,250,250,0.80);line-height:1.625;">Ideal para quem deseja um resultado leve, delicado e mais completo</span>
+            </li>
+          </ul>
+
+          <div style="border-top:1px solid rgba(250,250,250,0.15);padding-top:1.5rem;margin-bottom:2rem;">
+            <p class="plan-price" style="color:#FAFAFA;" style="font-weight:500;">12× de <strong>R$ 450,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Botox%20Three%20%2B%20Kiss%20(12x%20de%20R%24%20450%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--light" style="width:100%;justify-content:center;"
+            aria-label="Quero o plano Botox Three + Kiss"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+        <!-- Plano 3: Botox Three + Collagen Basic -->
+        <article class="gs-fade plan-card">
+          <h3 class="font-serif" style="font-size:1.5rem;color:#1A1A1A;margin-bottom:0.25rem;font-family:'Playfair Display',Georgia,serif;font-weight:500;">Botox Three + Collagen Basic</h3>
+          <p style="font-family:'Inter',system-ui,sans-serif;font-size:0.75rem;color:rgba(26,26,26,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.5rem;">Para rejuvenescimento com estímulo estrutural</p>
+
+          <ul style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem;flex:1;">
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">3 aplicações de Botox full face</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">1 bioestimulador</span>
+            </li>
+            <li style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:#4A3728;margin-top:0.125rem;" aria-hidden="true">—</span>
+              <span style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.70);line-height:1.625;">Ideal para quem deseja mais firmeza, qualidade de pele e suporte ao envelhecimento</span>
+            </li>
+          </ul>
+
+          <div style="border-top:1px solid rgba(74,55,40,0.10);padding-top:1.5rem;margin-bottom:2rem;">
+            <p class="plan-price" style="color:#1A1A1A;" style="font-weight:500;">12× de <strong>R$ 580,00</strong></p>
+          </div>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Tenho%20interesse%20no%20plano%20Botox%20Three%20%2B%20Collagen%20Basic%20(12x%20de%20R%24%20580%2C00).%20Gostaria%20de%20saber%20mais%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand" style="width:100%;justify-content:center;"
+            aria-label="Quero o plano Botox Three + Collagen Basic"
+          >
+            Quero esse plano
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- Upgrade Card -->
+      <div class="gs-fade upgrade-card">
+        <div class="upgrade-inner" style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div style="flex:1;">
+            <span class="section-label">Protocolo avançado</span>
+            <h3 class="font-serif" style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,1.875rem);color:#1A1A1A;margin-bottom:0.75rem;font-weight:500;">Upgrade — Planos Personalizados</h3>
+            <p style="font-family:'Inter',system-ui,sans-serif;font-size:0.875rem;color:rgba(26,26,26,0.65);line-height:1.625;max-width:36rem;">
+              Para mulheres que desejam um protocolo mais avançado e desenhado sob medida. Combine seu plano de Botox com estratégias complementares, como: <strong style="color:#1A1A1A;font-weight:500;">Pills Post (A.H.), Thread (Fios), Skin (Gerenciamento de Pele)</strong>. Ideal para quem quer um rejuvenescimento mais completo, com abordagem personalizada.
+            </p>
+          </div>
+          <div style="flex-shrink:0;">
+            <a
+              href="https://api.whatsapp.com/send?phone=5518996912727&text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20os%20Planos%20Personalizados%20do%20Clube%20do%20Botox%20e%20agendar%20minha%20avalia%C3%A7%C3%A3o%20individualizada"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blob-btn blob-btn--brand"
+              aria-label="Quero minha avaliação personalizada"
+            >
+              Quero minha avaliação
+              <span class="blob-btn__inner" aria-hidden="true">
+                <span class="blob-btn__blobs">
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                  <span class="blob-btn__blob"></span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5 — QUEM SOMOS
+  ════════════════════════════════════════════ -->
+  <section id="quem-somos" aria-label="Sobre a Odontologia Ribeiro">
+
+    <div style="max-width:80rem;margin:0 auto;" class="grid grid-split-rev items-stretch">
+
+      <!-- Imagem (esquerda) -->
+      <div class="split-img-col" style="order:2;">
+        <!-- foto-doutora-03.webp -->
+        <img
+          src="imagens/foto-doutora-03.webp"
+          alt="Equipe Odontologia Ribeiro — cuidado individualizado com elegância"
+          width="800" height="1000"
+          class="img-zoom gs-fade-left" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;"
+        loading="lazy"
+      />
+      </div>
+
+      <!-- Texto (direita) -->
+      <div class="split-text-col" style="order:1;">
+        <span class="section-label gs-fade-right">Quem somos</span>
+        <div class="rule gs-fade-right"></div>
+
+        <h2 class="gs-fade-right section-h2-ink" style="font-size:clamp(1.875rem,4vw,3rem);margin-bottom:2rem;">
+          Odontologia<br />Ribeiro
+        </h2>
+
+        <p class="gs-fade-right body-text" style="margin-bottom:2.5rem;max-width:32rem;">
+          Na Odontologia Ribeiro, acreditamos que cuidar da imagem é também uma forma de preservar presença, identidade e confiança. Por isso, criamos protocolos de rejuvenescimento contínuo para mulheres que desejam se manter bem cuidada ao longo do ano, com naturalidade, critério e elegância.
+        </p>
+
+        <blockquote class="gs-fade-right" style="margin-bottom:2.5rem;max-width:28rem;">
+          <p style="font-family:'Playfair Display',Georgia,serif;font-size:1.125rem;font-style:italic;color:#4A3728;line-height:1.8;">
+            Mais do que procedimentos, oferecemos um olhar individualizado sobre a beleza que permanece você.
+          </p>
+        </blockquote>
+
+        <div class="gs-fade-right" style="display:inline-block;">
+          <a
+            href="https://api.whatsapp.com/send/?phone=5518996912727&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Clube%20do%20Botox%20e%20agendar%20minha%20avaliação."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="blob-btn blob-btn--brand"
+            aria-label="Agendar no WhatsApp"
+          >
+            Agendar no WhatsApp
+            <span class="blob-btn__inner" aria-hidden="true">
+              <span class="blob-btn__blobs">
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+                <span class="blob-btn__blob"></span>
+              </span>
+            </span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+
+      <!-- logo.webp -->
+      <img
+        src="imagens/logo.webp"
+        alt="Odontologia Ribeiro"
+        class="footer-logo brightness-0 invert"
+        loading="lazy"
+      />
+
+      <p class="footer-copy">
+        © 2025 Odontologia Ribeiro. Todos os direitos reservados.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JS — Scroll Reveals via IntersectionObserver nativo
+       Zero dependências externas | ~25 linhas
+  ════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      // ── Scroll reveals ──────────────────────────────────────────
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // dispara uma vez só
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.gs-fade, .gs-fade-left, .gs-fade-right')
+        .forEach(function (el) { observer.observe(el); });
+
+      // ── Header shadow no scroll ──────────────────────────────────
+      var header = document.querySelector('header');
+      window.addEventListener('scroll', function () {
+        header.style.boxShadow = window.scrollY > 80
+          ? '0 2px 24px rgba(74,55,40,0.08)'
+          : 'none';
+      }, { passive: true });
+
+      // ── Sticky CTA — aparece após 3s no mobile ───────────────────
+      setTimeout(function () {
+        var cta = document.getElementById('sticky-cta');
+        if (cta) cta.style.display = 'flex';
+      }, 3000);
+
+      // ── Smooth scroll para #planos ───────────────────────────────
+      document.querySelectorAll('a[href="#planos"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById('planos');
+          if (target) {
+            var top = target.getBoundingClientRect().top + window.pageYOffset;
+            var offset = window.innerHeight / 2 - target.offsetHeight / 2;
+            window.scrollTo({ top: Math.max(top - Math.max(offset, 80), 0), behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+
+
+  <!-- ═══════════════════════════════════════════
+       STICKY CTA MOBILE — Connect Rate Booster
+  ════════════════════════════════════════════ -->
+  <div id="sticky-cta" aria-label="Botão flutuante WhatsApp" style="
+    position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 9999;
+    display: none; /* shown via JS after 3s */
+  ">
+    <a
+      href="https://api.whatsapp.com/send/?phone=5518996912727&text=Ol%C3%A1%21+Gostaria+de+conhecer+o+Clube+do+Botox+e+agendar+minha+avalia%C3%A7%C3%A3o."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp"
+      style="
+        display: flex; align-items: center; gap: 0.6rem;
+        background: #25D366; color: #fff;
+        border-radius: 9999px; padding: 0.85rem 1.4rem;
+        font-family: 'Inter', system-ui, sans-serif; font-size: 0.8rem;
+        font-weight: 600; letter-spacing: 0.05em; text-decoration: none;
+        box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+        transition: transform 0.2s, box-shadow 0.2s;
+      "
+      onmouseenter="this.style.transform='scale(1.04)'"
+      onmouseleave="this.style.transform='scale(1)'"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.528 5.845L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.371l-.36-.214-3.727.977.994-3.636-.235-.374A9.818 9.818 0 1121.818 12 9.83 9.83 0 0112 21.818z"/>
+      </svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+
+</body>
+</html>
